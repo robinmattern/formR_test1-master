@@ -1,0 +1,13 @@
+FVARS:
+  PROJECT_NO:          "50"
+  PROJECT_NAME:        "formR"
+  PROJECT_STAGE:       "dev02-robin
+  A##_APP_VERSION:     "2.03"
+  A##_APP_NAME:        "sample-{TYPE}"
+  A##_APP_FOLDER:      "{TYPE}_{APP_NAME}-{TYP}"
+  A##_CLIENT_PATH:     "http://localhost:#####/"
+  A##_SERVER_API_URL:  "http://localhost:#####/api"
+  A##_SERVER_LOCATION: "Local"
+  A##_REMOTE_PATH:     "https://formr.net"
+  A##_REMOTE_API_URL:  "http://92.112.184.206:#####/api"
+  A##_DB_ENV_NAME:     "Remote" 

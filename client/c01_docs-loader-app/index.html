@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Manager 1</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .section { border: 1px solid #ccc; margin: 10px 0; padding: 15px; }
+        .upload-btn { background: #28a745; color: white; padding: 8px 16px; border: none; cursor: pointer; }
+        .download-btn { background: #28a745; color: white; padding: 8px 16px; border: none; cursor: pointer; margin-right: 10px; }
+        .delete-btn { background: #dc3545; color: white; padding: 8px 16px; border: none; cursor: pointer; }
+        select, input[type="file"] { width: 100%; padding: 8px; margin: 5px 0; }
+        .doc-info { background: #f8f9fa; padding: 10px; border: 1px solid #dee2e6; }
+    </style>
+</head>
+<body>
+    <h1>Document Manager 1</h1>
+    
+    <div class="section">
+        <h3>Upload Document:</h3>
+        <input type="file" id="fileInput">
+        <button class="upload-btn" onclick="uploadFile()">Upload Button</button>
+    </div>
+
+    <div class="section">
+        <h3>Select Document:</h3>
+        <select id="docSelect" onchange="showDocInfo()">
+            <option value="">Choose a document...</option>
+        </select>
+    </div>
+
+    <div class="section">
+        <h3>Document Info:</h3>
+        <div class="doc-info" id="docInfo">
+            Select a document to view its information.
+        </div>
+        <br>
+        <button class="download-btn" onclick="downloadDoc()" id="downloadBtn" style="display:none">Download</button>
+        <button class="delete-btn"   onclick="deleteDoc()"   id="deleteBtn"   style="display:none">Delete</button>
+    </div>
+
+    <script src="_config.js"></script> 
+    <script src="index.js"></script>
+</body>
+</html>

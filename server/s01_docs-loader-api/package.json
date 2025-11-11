@@ -1,0 +1,8 @@
+{
+  "name": "s01-docs-loader-api",
+  "version": "2.03.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}

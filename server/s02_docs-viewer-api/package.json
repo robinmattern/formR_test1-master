@@ -1,0 +1,8 @@
+{
+  "name": "s02-docs-viewer-api",
+  "version": "2.03.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  }
+}

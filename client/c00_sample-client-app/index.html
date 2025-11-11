@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>formR a00_Sample-Client-App</title>
+</head>
+<body>
+    <div>
+        <h2>Welcome to the formR c00_Sample-Client-App</h2>
+        <div id="server-message">Loading...</div>
+    </div>
+    <script src="_config.js"></script> 
+    <script>
+        fetch( `${window.FVARS.SERVER_API_URL}` )
+            .then( pResponse => pResponse.text() )
+            .then( aHTML => {
+                document.getElementById('server-message').innerHTML = aHTML;
+                } )
+            .catch(error => {
+                document.getElementById('server-message').innerHTML = 'Server not available';
+                } );
+    </script>
+</body>
+</html>

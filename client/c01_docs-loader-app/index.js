@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', loadDocuments);
 
 async function loadDocuments() {
     try {
-        const response = await fetch(API_BASE);
-        const documents = await response.json();
+        const response   = await fetch(API_BASE);
+        const documents  = await response.json();
         
-        const select = document.getElementById('docSelect');
+        const select     = document.getElementById('docSelect');
         select.innerHTML = '<option value="">Choose a document...</option>';
         
         documents.forEach(doc => {
@@ -24,8 +24,8 @@ async function loadDocuments() {
 }
 
 async function uploadFile() {
-    const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
+    const fileInput    = document.getElementById('fileInput');
+    const file         = fileInput.files[0];
     
     if (!file) {
         alert('Please select a file');
@@ -44,42 +44,44 @@ async function uploadFile() {
         if (response.ok) {
             fileInput.value = '';
             loadDocuments();
+            alert(        `File uploaded successfully`);
             console.log(`  File uploaded successfully`);
         } else {
             throw new Error('Upload failed');
         }
     } catch (error) {
-        console.log(`  Error uploading file: ${encodeURIComponent(error.message)}`);
+            alert        (`File upload failed:`);
+            console.log(`  Error uploading file: ${encodeURIComponent(error.message)}`);
     }
 }
 
 async function showDocInfo() {
-    const select = document.getElementById('docSelect');
-    const docId = select.value;
+    const select       = document.getElementById('docSelect');
+    const docId        = select.value;
     
     if (!docId) {
-        document.getElementById('docInfo').innerHTML = 'Select a document to view its information.';
+        document.getElementById('docInfo'    ).innerHTML     = 'Select a document to view its information.';
         document.getElementById('downloadBtn').style.display = 'none';
-        document.getElementById('deleteBtn').style.display = 'none';
+        document.getElementById('deleteBtn'  ).style.display = 'none';
         currentDoc = null;
         return;
     }
 
     try {
         const response = await fetch(`${API_BASE}/${docId}`);
-        const doc = await response.json();
-        currentDoc = doc;
+        const doc      = await response.json();
+        currentDoc     = doc;
 
-        const date = new Date(doc.lastModified).toLocaleString();
+        const date     = new Date(doc.lastModified).toLocaleString();
         document.getElementById('docInfo').innerHTML = `
-            Title: ${doc.title}<br>
-            Path: ./${doc.filepath}<br>
+            Title:   ${doc.title}<br>
+            Path:  ./${doc.filepath}<br>
             Updated: ${date}<br>
-            Type: ${doc.type}
+            Type:    ${doc.type}
         `;
         
         document.getElementById('downloadBtn').style.display = 'inline-block';
-        document.getElementById('deleteBtn').style.display = 'inline-block';
+        document.getElementById('deleteBtn'  ).style.display = 'inline-block';
     } catch (error) {
         console.log(`  Error loading document info: ${encodeURIComponent(error.message)}`);
     }
@@ -87,9 +89,10 @@ async function showDocInfo() {
 
 function downloadDoc() {
     if (currentDoc) {
-        const link = document.createElement('a');
-        link.href = `http://localhost:3251/${currentDoc.filepath}`;
-        link.download = currentDoc.title;
+        const link     =  document.createElement('a');
+        link.href      = `${ API_BASE.replace( /\/api.*/, '' ) }/${currentDoc.filepath}`;
+        link.download  =  currentDoc.title;
+//      link.target    = '_blank';
         link.click();
     }
 }

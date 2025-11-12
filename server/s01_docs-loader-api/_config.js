@@ -3,7 +3,7 @@ var _FVARS =
 , "APP_FOLDER":     "server/s01_docs-loader-api"   
 , "CLIENT_PATH":    "http://localhost:51201/"
 , "SERVER_API_URL": "http://localhost:51251/api"
-, "DATA_FOLDER":    "{ProjectDir}/data"   
+, "DATA_FOLDER":    "{ProjectDir}/../data"   
    }
 //-------------------------------------------------------------------------------------------
 // End of _FVARS

@@ -6,10 +6,10 @@ document.addEventListener('DOMContentLoaded', loadDocuments);
 
 async function loadDocuments() {
     try {
-        const response = await fetch(API_BASE);
-        const documents = await response.json();
+        const response   = await fetch(API_BASE);
+        const documents  = await response.json();
         
-        const select = document.getElementById('docSelect');
+        const select     = document.getElementById('docSelect');
         select.innerHTML = '<option value="">Choose a document...</option>';
         
         documents.forEach(doc => {
@@ -44,18 +44,20 @@ async function uploadFile() {
         if (response.ok) {
             fileInput.value = '';
             loadDocuments();
+            alert(        `File uploaded successfully`);
             console.log(`  File uploaded successfully`);
         } else {
             throw new Error('Upload failed');
         }
     } catch (error) {
-        console.log(`  Error uploading file: ${error.message}`);
+            alert        (`File upload failed:`);
+            console.log(`  Error uploading file: ${error.message}`);
     }
 }
 
 async function showDocInfo() {
-    const select = document.getElementById('docSelect');
-    const docId = select.value;
+    const select       = document.getElementById('docSelect');
+    const docId        = select.value;
     
     if (!docId) {
         document.getElementById('docInfo').innerHTML = 'Select a document to view its information.';
@@ -68,10 +70,10 @@ async function showDocInfo() {
 
     try {
         const response = await fetch(`${API_BASE}/${docId}`);
-        const doc = await response.json();
-        currentDoc = doc;
+        const doc      = await response.json();
+        currentDoc     = doc;
 
-        const date = new Date(doc.lastModified).toLocaleString();
+        const date     = new Date(doc.lastModified).toLocaleString();
         document.getElementById('docInfo').innerHTML = `
             Title: ${doc.title}<br>
             Path: ./${doc.filepath}<br>
@@ -89,16 +91,16 @@ async function showDocInfo() {
 
 function viewDoc() {
     if (currentDoc) {
-        const fileUrl = `${ API_BASE.replace( /\/api.*/, "" ) }/${currentDoc.filepath}`;
+        const fileUrl  = `${ API_BASE.replace( /\/api.*/, "" ) }/${currentDoc.filepath}`;
         renderDocument(currentDoc.type, fileUrl, 'viewer');
     }
 }
 
 function downloadDoc() {
     if (currentDoc) {
-        const link = document.createElement('a');
-        link.href = `${ API_BASE.replace( /\/api.*/, "" ) }/${currentDoc.filepath}`;
-        link.download = currentDoc.title;
+        const link     = document.createElement('a');
+        link.href      = `${ API_BASE.replace( /\/api.*/, "" ) }/${currentDoc.filepath}`;
+        link.download  = currentDoc.title;
         link.click();
     }
 }
